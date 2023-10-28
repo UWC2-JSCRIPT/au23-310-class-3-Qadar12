@@ -4,11 +4,11 @@
 // '206-333-4444'
 // '206 333 4444'
 // Returns true if valid, false if not valid
-const ph = '206 333 4444")';
-const regex = new RegExp("/^d{3}[-s]?d{3}[-s]?d{4}$/");
-const testPhoneNumber = (phoneNum) => regex.test(phoneNum);
+const regex = new RegExp(
+  "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
+);
 
-console.log(testPhoneNumber(ph));
+const testPhoneNumber = (str) => regex.test(str);
 // Explanation of RegExp
 // ^      start of line
 // \(     optional start parenthesis
@@ -21,8 +21,8 @@ console.log(testPhoneNumber(ph));
 // $      end of line
 
 // check testPhoneNumber
-//console.log(testPhoneNumber("(206) 333-4444")); // should return true
-//console.log(testPhoneNumber("(206) 33-4444")); // should return false, missing a digit
+console.log(testPhoneNumber("(206) 333-4444")); // should return true
+console.log(testPhoneNumber("(206) 33-4444")); // should return false, missing a digit
 
 // 1. Create a function parsePhoneNumber that takes in a phoneNumber string
 // in one of the above formats.  For this, you can *assume the phone number
@@ -33,9 +33,7 @@ console.log(testPhoneNumber(ph));
 
 // use a regex and then .match(regex) that will put in a array then log it out
 
-const parsePhoneNumber = (phoneNum) =>
-  // Check parsePhoneNumber
-  console.log(parsePhoneNumber("206-333-4444"));
+const parsePhoneNumber = (str) => console.log(str.match(regex));
 // returns {areaCode: '206', phoneNumber: '3334444'}
 
 console.log(parsePhoneNumber("(222) 422-5353"));
