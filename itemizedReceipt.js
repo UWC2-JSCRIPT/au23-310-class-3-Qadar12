@@ -4,12 +4,19 @@
 // function should log each item to the console and log a total price
 
 const logReceipt = (...params) => {
-  let total = 0;
+  let subTotal = 0;
+  tax = 0.1025;
+
   params.forEach((item) => console.log(`${item.descr} - ${item.price}`)); // grab items and prices
   params.forEach((cost) => {
-    total += cost.price; // grab price and add to total
+    subTotal += cost.price; // grab price and add to subTotal
   });
-  console.log(`Total - $${total}`); // total is ouside the forEach
+
+  const taxAmount = subTotal * tax;
+  const grandTotal = subTotal + taxAmount;
+  console.log(`Subtotal - $${subTotal}`); // total is ouside the forEach
+  console.log(`Tax - $${taxAmount.toFixed(2)}`);
+  console.log(`Total - $${grandTotal.toFixed(2)}`);
 };
 
 // Check
