@@ -33,8 +33,18 @@ console.log(testPhoneNumber("(206) 33-4444")); // should return false, missing a
 // and run the exec method to capture the area code and remaining part of
 // the phone number.
 // Returns an object in the format {areaCode, phoneNumber}
+function parsePhoneNumber(str) {
+  const regex = /(\(\d{3}\)|\d{3})[ -]?(\d{3}[ -]\d{4})/;
+  const match = str.match(regex);
 
-// returns {areaCode: '206', phoneNumber: '3334444'}
+  return { areaCode: match[1], phoneNumber: match[2] };
+}
 
-parsePhoneNumber("(222) 422-5353");
-// returns {areaCode: '222', phoneNumber: '4225353'}
+console.log(parsePhoneNumber("(222) 422-5353"));
+// {areaCode: '(222)', phoneNumber: '422-5353'}
+
+console.log(parsePhoneNumber("222 422 5353"));
+//{areaCode: '222', phoneNumber: '422 5353'}
+
+console.log(parsePhoneNumber("122-422-5353"));
+// {areaCode: '122', phoneNumber: '422-5353'}
